@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>作業二 - 電商前端應用</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <!-- 引入我們自己寫的 CSS -->
+    <link rel="stylesheet" href="./css/loader.css">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1>作業二 - 電商前端應用</h1>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">查詢</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">新增</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="separator"></div>
+
+
+        <div class="page-header">
+            <h1>新增商品</h1>
+        </div>
+
+
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label" for="InputProductName">商品名稱</label>
+            <div class="col-10">
+                <input type="text" name="name" class="form-control" id="InputProductName" aria-describedby="productName" placeholder="請輸入商品名稱">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label" for="InputProductPrice">商品價格</label>
+            <div class="col-10">
+                <input type="Number" name="price" class="form-control" id="InputProductPrice" aria-describedby="productPrice" placeholder="請輸入商品價格">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label" for="InputProductCount">商品數量</label>
+            <div class="col-10">
+                <input type="Number" name="count" class="form-control" id="InputProductCount" aria-describedby="productCount" placeholder="請輸入商品數量">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label" for="InputProductName">圖片網址</label>
+            <div class="col-10">
+                <input type="text" name="image" class="form-control" id="InputProductImage" aria-describedby="productImage" placeholder="請輸入商品圖片網址">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col">
+                <button id="insert" class="btn btn-primary">新增</button>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col">
+                <footer class="text-center">
+                    <div>© 2017 CSX2003 網頁資料庫程式設計 <a href="http://homepage.ntu.edu.tw/~kchen/" target="_blank">Kun Chen</a></div>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <div class="loader-wrapper hide">
+        <div class="loader"></div>
+    </div>
+
+    <div id="dialog" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="ModalTitle">新增商品</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <p id="message"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="./js/jquery-3.2.1.js"></script>
+    <script src="./js/popper.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+
+    <!-- 引入我們自己寫的 JavaScript -->
+    <script src="./js/loader.js"></script>
+    <!-- 引入我們自己寫的 JavaScript -->
+    <script src="./js/index.js"></script>
+</body>
+
+</html>
