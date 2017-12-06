@@ -60,26 +60,29 @@ app.get('/query', function(req, res) {
         db.collection('B04703033').find().toArray(function(err, docs){
             // 先判斷是否資料查訊是否成功
             if (err) {
-                console.log('資料查詢失敗')
+                response.result = false
+                response.message = "資料查詢失敗，" + err.message
+                res.json(response)
                 return
             }
-            console.log('資料查詢成功')
-            // 將 docs 的每一個 document 都顯示出來
-            for (var i = 0; i < docs.length; i++) {
-                console.dir(docs[i])
-            }
+            response.result = true
+            response.message = "資料查詢成功" 
             response.data = docs
+            res.json(response)
 
             // 將資料庫連線關閉
-            db.close()
-    
+            db.close()  
         })
-        res.json(response)
         
     })
-
+})
 //insert功能
 app.post('/insert', function(req, res) {
+    var response = {
+        result: true,
+        data: []
+    }
+
     var data = {
         name: req.body.name,
         price: req.body.price,
@@ -90,6 +93,7 @@ app.post('/insert', function(req, res) {
     // TODO 作業二 - 新增資料
     // 請將新增資料的程式碼寫在，使得將client送過來的 data 能寫入至 mongodb 中
     
+
     MongoClient.connect(url, function(err, db) {
         if (err) {
             response.result = false
@@ -101,20 +105,18 @@ app.post('/insert', function(req, res) {
         db.collection('B04703033').insert(data,function(err, item){
             // 先判斷新增資料是否成功
         if (err) {
-            console.log('新增資料失敗')
+            response.result = false
+            response.message = "新增資料失敗" + err.message
+            res.json(response)
             return
         }
-        console.log('新增資料成功')
-        console.dor(result)
+        response.result = true
+        response.message = "新增資料成功"
     
         //資料庫連線關閉
         db.close()
         })
     
-        var response = {
-        result: true,
-        data: data
-        }
         res.json(response)
     })
 })
@@ -153,7 +155,7 @@ app.post('/update', function(req, res) {
             price: data.price
         }
         
-        db.collection('B04703033').update({_id:objectID(data._id)},{$set:{name: data.name,price: data.price},function(err, docs) {
+        db.collection('B04703033').update({_id:objectID(data._id)},{$set:{name: data.name,price: data.price}},function(err, docs) {
             // 先判斷是否資料更新是否成功
             if (err) {
                 console.log('資料更新失敗')
@@ -198,17 +200,19 @@ app.post('/delete', function(req, res) {
         var filter = {
             _id: objectID(data._id)
         }
-        db.collection('CSX2003_02_HW2').remove({id_=filter},function(err, docs) {
+        db.collection('B04703033').deleteOne(filter,function(err, docs) {
             // 先判斷是否資料刪除是否成功
             if (err) {
                 console.log('資料刪除失敗')
+                res.json(response)
                 return
             }
-            console.log('資料刪除成功')
+            console.log(docs)
     
             // 將資料庫連線關閉
             db.close()
         })
+        res.json(response)
 
     })
 
