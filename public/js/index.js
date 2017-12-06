@@ -3,7 +3,7 @@ $(() => {
 
     $('#query').on('click', function() {
         loader.start();
-        $.get("http://127.0.0.1:1377/query", function(response) {
+        $.get("/query", function(response) {
             if (response) {
                 if (response.result) {
                     $("#product-list").empty()
